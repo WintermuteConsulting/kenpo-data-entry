@@ -1,0 +1,26 @@
+{
+  "name": "kenpo-data-entry",
+  "version": "0.1.0",
+  "description": "data entry tool for the mykenpo database",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/WintermuteConsulting/kenpo-data-entry.git"
+  },
+  "contributors": [
+    "Ben Brunk",
+    "Andrew Falconer"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/WintermuteConsulting/kenpo-data-entry/issues"
+  },
+  "homepage": "https://github.com/WintermuteConsulting/kenpo-data-entry#readme",
+  "dependencies": {
+    "express": "^4.14.0",
+    "mongodb": "^2.2.20"
+  }
+}
