@@ -1,6 +1,7 @@
 // Modules 
 var mongoc = require('mongodb').MongoClient;
 var express = require('express');
+var bodyParser = require('body-parser');
 
 // Routing paths
 var root = require('./routes/root');
@@ -9,6 +10,7 @@ var ranks = require('./routes/ranks');
 
 // Express configuration 
 var app = express();
+app.use(bodyParser.json());
 
 // Server configuration
 const url = 'mongodb://localhost:27017/mykenpo';
@@ -23,9 +25,12 @@ mongoc.connect(url)
     process.exit();
   });
 
-  // Pass the DB to our custom routers
+  // Pass the DB's collections to our custom routers
   app.use((req, res, next) => {
-    res.locals.db = db;
+    res.locals.collections = {
+      ranks: db.collection('ranks'),
+      techs: db.collection('techniques')
+    };
     next();
   });
 

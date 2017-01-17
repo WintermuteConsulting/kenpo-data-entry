@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/WintermuteConsulting/kenpo-data-entry#readme",
   "dependencies": {
+    "body-parser": "^1.15.2",
     "express": "^4.14.0",
     "mongodb": "^2.2.20"
   }
