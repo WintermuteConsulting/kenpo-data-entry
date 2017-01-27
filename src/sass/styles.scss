@@ -1,0 +1,145 @@
+
+@import 'colors';
+@import 'system-font.css';
+
+/* root elements */
+body {
+  margin: 0;
+}
+
+/* page container */
+.page-container {
+  height: 100vh;
+  background-color: $background;
+  display: flex;
+  flex-direction: column;
+}
+
+/* header module */
+.header {
+  display: flex;
+  align-items: center;
+  background-color: white;
+  border-bottom: 1px solid $border;
+  height: 45px;
+}
+
+.text {
+  margin: 0 0 0 12px;
+  font: 400 18px system;
+  color: $dark_text;
+}
+
+.indicator {
+  $diameter: 10px;
+  margin-left: $diameter;
+  width: $diameter;
+  height: $diameter;
+  border-radius: $diameter / 2;
+  background-color: #7ED321;
+}
+
+.indicator--error {
+  background-color: red;
+}
+
+/* pane container module */
+.pane-container {
+  flex: 1;
+  display: flex;
+  align-items: stretch;
+}
+
+/* pane divider */
+.pane-divider {
+  background-color: $light_text;
+  width: 1px;
+}
+
+/* pane module */
+.pane {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* toolbar module */
+.toolbar {
+  display: flex;
+  justify-content:  space-between;
+  align-items: center;
+  margin: 0;
+  padding: 0 20px;
+  height:  35px;
+  border-bottom: 1px solid $border;
+  background-color: white;
+}
+
+.left {
+  background-color: red;
+  width:  15px;
+  height: 15px;
+}
+
+.right {
+  background-color: red;
+  width: 115px;
+  height: 10px;
+}
+
+.title {
+  font: 400 16px system;
+  color: $dark_text;
+}
+
+/* pane content container */
+.pane-content-container {
+  padding: 12px 0;
+  flex: 1;
+  overflow: scroll;
+}
+
+/* pseudo-table */
+.row {
+  border-style: solid;
+  border-color: $border;
+  border-width: 0 0 1px 0;
+  background-color: white;
+}
+
+.row:first-child {
+  border-width: 1px 0 1px 0;
+}
+
+.row--collapsed {
+  display: flex;
+  align-items: center;
+  height: 33px; 
+}
+
+.row--expanded {
+  @extend .row--collapsed; 
+  height: initial;
+}
+
+.control {
+  margin: 0 18px;
+}
+
+.content {
+  flex: 1;
+  font: 400 16px system;
+  color: $dark_text;
+}
+
+.placeholder-control {
+  width: 14px;
+  height: 14px;
+  background-color: black;
+}
+
+.placeholder-content {
+  width: 500px;
+  height:400px;
+  background-color: blue;
+}
