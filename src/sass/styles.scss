@@ -112,27 +112,31 @@ body {
   border-width: 1px 0 1px 0;
 }
 
-.row--collapsed {
-  display: flex;
-  align-items: center;
-  height: 33px; 
-}
-
-.row--expanded {
-  @extend .row--collapsed; 
-  height: initial;
-}
-
 /* control */
 .control {
   margin: 0 18px;
 }
 
-.control--special {
-  align-self: flex-start;
+.placeholder-control {
+  width: 14px;
+  height: 14px;
+  background-color: black;
 }
 
 /* content */
+.row-content {
+  display: flex; 
+  align-items: center;
+}
+
+.row-content--collapsed {
+  padding: 8px 0;
+}
+
+.row-content--expanded {
+  padding: 16px 0;
+}
+
 .content {
   flex: 1;
 }
@@ -140,12 +144,6 @@ body {
 .content--text {
   font: 400 16px system;
   color: $dark_text;
-}
-
-.placeholder-control {
-  width: 14px;
-  height: 14px;
-  background-color: black;
 }
 
 /* technique module */
