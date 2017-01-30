@@ -100,6 +100,7 @@ body {
 }
 
 /* pseudo-table */
+/* row */
 .row {
   border-style: solid;
   border-color: $border;
@@ -122,12 +123,21 @@ body {
   height: initial;
 }
 
+/* control */
 .control {
   margin: 0 18px;
 }
 
+.control--special {
+  align-self: flex-start;
+}
+
+/* content */
 .content {
   flex: 1;
+}
+
+.content--text {
   font: 400 16px system;
   color: $dark_text;
 }
@@ -138,8 +148,61 @@ body {
   background-color: black;
 }
 
-.placeholder-content {
-  width: 500px;
-  height:400px;
-  background-color: blue;
+/* technique module */
+.technique-section {
+  border-style: solid;
+  border-color: $border;
+  border-width: 0 0 1px 0; 
 }
+
+.technique-section:last-child {
+  border-width: 0; 
+}
+
+/* name */
+.name-list-container {
+  display: flex;
+}
+
+.name-list {
+  margin: 0;
+  list-style: none;
+}
+
+/* attack */
+
+/* defense */
+.defense-outer-list {
+  list-style: none;
+  counter-reset: li;
+}
+
+.defense-outer-list > li {
+  display: flex;
+}
+
+.defense-outer-list > li:before {
+  display: block;
+  content: counter(li);
+  counter-increment:li;
+  text-align: center;
+  line-height:1em;
+  height: 1em;
+  min-width: 1em;
+  padding: 0.25em;
+  margin-right: 1em;
+  border:1px solid;
+  border-radius: 50%;
+}
+
+.defense-inner-list {
+  list-style: none;
+}
+
+.defense-inner-list > li:before {
+  display: inline-block;
+  content: "\30FB";
+  margin-left: -1em;
+  width: 1em;   
+}
+
