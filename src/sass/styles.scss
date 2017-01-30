@@ -146,6 +146,11 @@ body {
   color: $dark_text;
 }
 
+.content--form {
+  font: 400 18px system;
+  color: $dark_text;
+}
+
 /* technique module */
 ol, ul {
   margin: 0;
@@ -167,7 +172,15 @@ ol, ul {
   padding: 0 0 0.5em 0;
 }
 
+.form-title {
+  margin: 0;
+  font-size: 2em;
+  font-weight: 200;
+}
+
 .section-heading {
+  font-size: 0.66em;
+  font-weight: 700;
   margin: 0;
 }
 
@@ -179,6 +192,7 @@ ol, ul {
 .name-list-container {
   display: flex;
   margin-top: 0;
+  color: $light_text; 
 }
 
 .name-list-label::after {
@@ -194,6 +208,10 @@ ol, ul {
 
 .name-list > li {
   margin-bottom: 0.25em;
+}
+
+.name-list > li:last-child {
+  color: $border;
 }
 
 /* attack */
@@ -212,6 +230,10 @@ ol, ul {
 
 .defense-outer-list > li:first-child {
   margin-top: 0;
+}
+
+.defense-outer-list > li:last-child {
+  color: $border;
 }
 
 .defense-outer-list > li:before {
@@ -238,5 +260,9 @@ ol, ul {
   content: "\30FB";
   margin-left: -1em;
   width: 1em;   
+}
+
+.defense-inner-list > li:last-child {
+  color: $border;
 }
 
