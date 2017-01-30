@@ -134,7 +134,7 @@ body {
 }
 
 .row-content--expanded {
-  padding: 16px 0;
+  padding: 16px 0 32px 0;
 }
 
 .content {
@@ -147,14 +147,24 @@ body {
 }
 
 /* technique module */
+ol, ul {
+  margin: 0;
+}
+
 .technique-section {
   border-style: solid;
   border-color: $border;
   border-width: 0 0 1px 0; 
+  padding: 0.5em 0;
 }
 
 .technique-section:last-child {
   border-width: 0; 
+  padding: 0.5em 0 0 0;
+}
+
+.technique-section:first-child {
+  padding: 0 0 0.5em 0;
 }
 
 .section-heading {
@@ -162,18 +172,28 @@ body {
 }
 
 .section-content {
-  margin-left: 16px;
+  margin: 1em 0 0 1em; 
 }
 
 /* name */
 .name-list-container {
   display: flex;
+  margin-top: 0;
+}
+
+.name-list-label::after {
+  content: " ";
+  white-space: pre;
 }
 
 .name-list {
   margin: 0;
   padding: 0;
   list-style: none;
+}
+
+.name-list > li {
+  margin-bottom: 0.25em;
 }
 
 /* attack */
@@ -187,6 +207,11 @@ body {
 
 .defense-outer-list > li {
   display: flex;
+  margin-top: 0.5em;
+}
+
+.defense-outer-list > li:first-child {
+  margin-top: 0;
 }
 
 .defense-outer-list > li:before {
@@ -205,6 +230,7 @@ body {
 
 .defense-inner-list {
   list-style: none;
+  padding-left: 1em;
 }
 
 .defense-inner-list > li:before {
