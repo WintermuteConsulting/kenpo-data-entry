@@ -137,6 +137,10 @@ body {
   padding: 16px 0 32px 0;
 }
 
+.row-content--expanded > .control {
+  align-self: flex-start;
+}
+
 .content {
   flex: 1;
 }
