@@ -5,6 +5,7 @@ var bodyParser = require('body-parser');
 var path = require('path');
 const R = require('ramda');
 const { stringifyID } = require('./helpful');
+const { open: openURL } = require('openurl');
 
 // Routing paths
 var root = require('./routes/root');
@@ -27,8 +28,11 @@ mongoc.connect(url)
   });
 
   // Install routers
-  app.use(root);
-  app.use('/entry', express.static(path.join(__dirname, 'src')));
+  const srcd = path.join(__dirname, 'src');
+  app.use(express.static(srcd));
+  app.get('/', (req, res, next) => {
+    res.status(200).sendFile(path.join(srcd, 'mock.html'));
+  });
 
   app.route('/:collection/:id?')
   .all((req, res, next) => {
@@ -88,9 +92,10 @@ mongoc.connect(url)
     }
   })
 
-  // Start the server
+  // Start the server and open the web browser
   app.listen(3000, () => {
     console.log('Connected to database. Listening on port 3000...');
+    openURL('http://localhost:3000');
   });
 
 })
