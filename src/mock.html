@@ -6,6 +6,32 @@
   <link rel="stylesheet" type="text/css" href="css/styles.css">
 </head>
 <body>
+  <!-- inline SVG -->
+  <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="display:none;">
+    <symbol id="add" class="add" viewBox="0 0 15 15" stroke="#000000" stroke-width="1" fill="none">
+      <path d="M7.5,0.5 L7.5,14.5" stroke-linecap="square"></path>
+      <path d="M0.5,7.5 L14.5,7.5" stroke-linecap="square"></path>
+    </symbol>
+    <symbol id="expand" class="expand" viewBox="0 0 15 15" stroke="#000000" stroke-width="1" fill="none">
+      <circle cx="7.5" cy="7.5" r="7"></circle>
+      <path d="M4,7.5 L11,7.5" stroke-linecap="square"></path>
+      <path d="M7.5,4 L7.5,11" stroke-linecap="square"></path>
+    </symbol>
+    <symbol id="collapse" class="collapse" viewBox="0 0 15 15" stroke="#000000" stroke-width="1" fill="none">
+      <circle cx="7.5" cy="7.5" r="7"></circle>
+      <path d="M4,7.5 L11,7.5" stroke-linecap="square"></path>
+    </symbol>
+    <symbol id="trash" class="trash" viewBox="0 0 14 16" stroke="#000000" fill="none">
+      <path d="M1.5,3.5 L12.5,3.5 L12.5,13.4914698 C12.5,14.6007504 11.5998238,15.5 10.507983,15.5 L3.49201702,15.5 C2.3918564,15.5 1.5,14.5980496 1.5,13.4914698 L1.5,3.5 Z" stroke-linecap="square"></path>
+      <path d="M0.5,3.5 L13.5,3.5" stroke-linecap="square"></path>
+      <path d="M4.5,6.5 L4.5,12.5" stroke-linecap="square"></path>
+      <path d="M7,6.5 L7,12.5" stroke-linecap="square"></path>
+      <path d="M9.5,6.5 L9.5,12.5" stroke-linecap="square"></path>
+      <path d="M4.0933281,1.46573222 C4.2488912,0.932373041 4.82261205,0.5 5.3748423,0.5 L8.6251577,0.5 C9.17735535,0.5 9.75036617,0.929826856 9.9066719,1.46573222 L10.5,3.5 L3.5,3.5 L4.0933281,1.46573222 Z" stroke-linecap="square"></path>
+    </symbol>
+  </svg> 
+
+  <!-- page content -->
   <div class="page-container">
     <!-- header module -->
     <header class="header">
@@ -17,7 +43,7 @@
       <div class="pane">
         <!-- toolbar module -->
         <menu class="toolbar">
-          <div class="left"></div>
+          <button class="control control--add"><svg><use xlink:href="#add"/></svg></button>
           <span class="title">Techniques</span>
           <div class="right"></div>
         </menu>
@@ -27,21 +53,21 @@
           <div class="pseudo-table">
             <div class="row">
               <div class="row-content row-content--collapsed">
-                <div class="control placeholder-control"></div>
+                <button class="row-side-content control control--expand"><svg><use xlink:href="#expand"/></svg></button>
                 <div class="content content--text">Clutching Feathers</div>
-                <div class="control placeholder-control"></div>
+                <button class="row-side-content control control--trash"><svg><use xlink:href="#trash"/></svg></button>
               </div>
             </div>
             <div class="row">
               <div class="row-content row-content--collapsed">
-                <div class="control placeholder-control"></div>
+                <button class="row-side-content control control--expand"><svg><use xlink:href="#expand"/></svg></button>
                 <div class="content content--text">Triggered Salute</div>
-                <div class="control placeholder-control"></div>
+                <button class="row-side-content control control--trash"><svg><use xlink:href="#trash"/></svg></button>
               </div>
             </div>
             <div class="row">
               <div class="row-content row-content--expanded">
-                <div class="control placeholder-control"></div>
+                <button class="row-side-content control control--expand"><svg><use xlink:href="#collapse"/></svg></button>
                 <div class="content content--form">
                   <!-- technique name -->
                   <div class="technique-section">
@@ -96,21 +122,21 @@
                     <!-- end of technique -->
                   </div>
                 </div>
-                <div class="control placeholder-control"></div>
+                <button class="row-side-content control control--trash"><svg><use xlink:href="#trash"/></svg></button>
               </div>
             </div>
             <div class="row">
               <div class="row-content row-content--collapsed">
-                <div class="control placeholder-control"></div>
+                <button class="row-side-content control control--expand"><svg><use xlink:href="#expand"/></svg></button>
                 <div class="content content--text">Thrusting Salute</div>
-                <div class="control placeholder-control"></div>
+                <button class="row-side-content control control--trash"><svg><use xlink:href="#trash"/></svg></button>
               </div>
             </div>
             <div class="row">
               <div class="row-content row-content--collapsed">
-                <div class="control placeholder-control"></div>
+                <button class="row-side-content control control--expand"><svg><use xlink:href="#expand"/></svg></button>
                 <div class="content content--text">Gift of Destruction</div>
-                <div class="control placeholder-control"></div>
+                <button class="row-side-content control control--trash"><svg><use xlink:href="#trash"/></svg></button>
               </div>
             </div>
           </div> 
@@ -121,7 +147,7 @@
       </div>
       <div class="pane">
         <menu class="toolbar">
-          <div class="left"></div>
+          <button class="control control--add"><svg><use xlink:href="#add"/></svg></button>
           <span class="title">Ranks</span>
           <div class="right"></div>
         </menu>

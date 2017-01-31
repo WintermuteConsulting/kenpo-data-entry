@@ -59,6 +59,16 @@
   flex-direction: column;
 }
 
+/* buttons */
+.control {
+  cursor: pointer;
+}
+
+.control--add, .control--expand, .control--collapse, .control--trash {
+  width: 15px;
+  height: 16px;
+}
+
 /* toolbar module */
 .toolbar {
   display: flex;
@@ -108,18 +118,11 @@
   border-width: 1px 0 1px 0;
 }
 
-/* control */
-.control {
+/* content */
+.row-side-content {
   margin: 0 18px;
 }
 
-.placeholder-control {
-  width: 14px;
-  height: 14px;
-  background-color: black;
-}
-
-/* content */
 .row-content {
   display: flex; 
   align-items: center;
