@@ -44,6 +44,7 @@
   flex: 1;
   display: flex;
   align-items: stretch;
+  overflow: hidden;
 }
 
 /* pane divider */
@@ -100,9 +101,12 @@
 
 /* pane content container */
 .pane-content-container {
-  padding: 12px 0;
   flex: 1;
   overflow: scroll;
+}
+
+.pane-content {
+  padding: 12px 0;
 }
 
 /* pseudo-table */
