@@ -2,6 +2,7 @@
 var { MongoClient: mongoc, ObjectID } = require('mongodb');
 var express = require('express');
 var bodyParser = require('body-parser');
+var path = require('path');
 const R = require('ramda');
 const { stringifyID } = require('./helpful');
 
@@ -27,6 +28,8 @@ mongoc.connect(url)
 
   // Install routers
   app.use(root);
+  app.use('/entry', express.static(path.join(__dirname, 'src')));
+
   app.route('/:collection/:id?')
   .all((req, res, next) => {
     const { collection: name, id } = req.params;
@@ -95,5 +98,3 @@ mongoc.connect(url)
   console.log(`[!] ${err}. Check that mongod is running!`);
   process.exitCode = 1;
 });
-
-
