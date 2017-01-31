@@ -1,11 +1,7 @@
 
 @import 'colors';
+@import 'reset';
 @import 'system-font.css';
-
-/* root elements */
-body {
-  margin: 0;
-}
 
 /* page container */
 .page-container {
@@ -156,10 +152,6 @@ body {
 }
 
 /* technique module */
-ol, ul {
-  margin: 0;
-}
-
 .technique-section {
   border-style: solid;
   border-color: $border;
