@@ -65,8 +65,13 @@
   cursor: pointer;
 }
 
-.control--add, .control--expand, .control--collapse, .control--trash {
+.control--add, .control--expand, .control--collapse {
   width: 15px;
+  height: 15px;
+}
+
+.control--trash {
+  width: 14px;
   height: 16px;
 }
 
