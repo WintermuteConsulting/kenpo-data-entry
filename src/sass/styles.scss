@@ -75,6 +75,24 @@
   height: 16px;
 }
 
+/* color filter */
+.filter {
+  display: flex;
+}
+
+.dot {
+  $diameter: 10px;
+  width: $diameter;
+  height: $diameter;
+  border-radius: $diameter / 2;
+  background-color: black;
+  margin-right: $diameter;
+}
+
+.dot::last-child {
+  margin: 0;
+}
+
 /* toolbar module */
 .toolbar {
   display: flex;
