@@ -133,6 +133,7 @@
 
 /* toolbar module */
 .toolbar {
+  position: relative;
   display: flex;
   justify-content:  space-between;
   align-items: center;
@@ -155,7 +156,18 @@
   height: 10px;
 }
 
+.bar-item {
+  z-index: 1;
+}
+
 .title {
+  width: 100%;
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 0;
+  text-align: center;
   font: 400 16px system;
   color: $dark_text;
 }
