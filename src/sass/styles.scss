@@ -136,6 +136,11 @@ body {
   outline: none;
 }
 
+/* inline add */
+.inline-add > li:last-child {
+  color: $border;
+}
+
 /* toolbar module */
 .toolbar {
   position: relative;
@@ -279,10 +284,6 @@ body {
   margin-bottom: 0.25em;
 }
 
-.name-list > li:last-child {
-  color: $border;
-}
-
 /* attack */
 
 /* defense */
@@ -299,10 +300,6 @@ body {
 
 .defense-outer-list > li:first-child {
   margin-top: 0;
-}
-
-.defense-outer-list > li:last-child {
-  color: $border;
 }
 
 .defense-outer-list > li:before {
@@ -329,10 +326,6 @@ body {
   content: "\30FB";
   margin-left: -1em;
   width: 1em;
-}
-
-.defense-inner-list > li:last-child {
-  color: $border;
 }
 
 /* RANKS */
