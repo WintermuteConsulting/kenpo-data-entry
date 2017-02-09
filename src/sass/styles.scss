@@ -330,3 +330,142 @@
   color: $border;
 }
 
+/* RANKS */
+.box-list {
+  counter-reset: li;
+  list-style: none;
+  padding: 0 24px;
+}
+
+.box-list > .box-list-item {
+  margin-bottom: 12px;
+  background-color: white;
+  border-radius: 3px;
+  border: 1px solid $border;
+}
+
+.box-list > .box-list-item:last-child {
+  margin-bottom: 0;
+}
+
+.box-list-toolbar {
+  margin: 0;
+  padding: 0 1em;
+  height: 35px;
+  border-bottom: 1px solid $border;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 14px;
+}
+
+/* toolbar items */
+.level-picker {
+  font-size: 12px;
+}
+
+.level-picker:before {
+  display: inline-block;
+  content: counter(li);
+  counter-increment:li;
+  text-align: center;
+  line-height:1em;
+  height: 1em;
+  min-width: 1em;
+  padding: 0.25em;
+  margin-right: 10px;
+  border:1px solid;
+  border-radius: 50%;
+}
+
+.reorder-up {
+  margin-right: 10px;
+}
+
+.reorder-up:before {
+  font-size: 14px;
+  content: "\2191";
+}
+
+.reorder-down:before {
+  font-size: 14px;
+  content: "\2193";
+}
+
+.picker {
+  border: 1px solid $border;
+  border-radius: 3px;
+  background: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNXB4IiBoZWlnaHQ9IjEwcHgiIHZpZXdCb3g9IjAgMCA1IDEwIiB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiPg0KICA8cG9seWdvbiBwb2ludHM9IjIuNDk0NjgwODUgMCA0Ljk4OTM2MTcgMy43NSAwIDMuNzUiPjwvcG9seWdvbj4NCgk8cG9seWdvbiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgyLjQ5NDY4MSwgOC4xMjUwMDApIHNjYWxlKDEsIC0xKSB0cmFuc2xhdGUoLTIuNDk0NjgxLCAtOC4xMjUwMDApIiBwb2ludHM9IjIuNDk0NjgwODUgNi4yNSA0Ljk4OTM2MTcgMTAgMCAxMCI+PC9wb2x5Z29uPg0KPC9zdmc+") white no-repeat right 5px bottom 50%;
+}
+
+.picker select {
+  padding: 3px 15px 3px 8px;
+  margin: 0;
+  font: inherit;
+  border: none;
+  box-shadow: none;
+  background: transparent;
+  background-image: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+.picker--inline {
+  display: inline-block;
+}
+
+.picker select:focus {
+  outline: none;
+}
+
+.order-picker-wrapper:after {
+  content: " degrees";
+  white-space: pre;
+}
+
+/* degree list */
+.degree-list, .flat-list {
+  list-style: none;
+  padding: 1em;
+}
+
+.degree-list > li {
+  padding: 1em 0;
+  border-bottom: 1px solid $border;
+}
+
+.degree-list > li:last-child {
+  padding: 1em 0 0 0;
+  border-bottom: 0;
+}
+
+.degree-list > li:first-child {
+  padding: 0 0 1em 0;
+}
+
+.list-content-container {
+  display: flex;
+  position: relative;
+}
+
+.list-right-control {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+/* degree bars */
+.degree-bar-container {
+  display: flex;
+  align-items: stretch;
+}
+
+.degree-bar {
+  width: 2px;
+  background-color: currentColor;
+  margin-right: 2px;
+}
+
+.degree-bar:last-child {
+  margin-right: 0;
+}
