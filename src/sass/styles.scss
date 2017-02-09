@@ -3,6 +3,11 @@
 @import 'reset';
 @import 'system-font.css';
 
+/* body */
+body {
+  font: 400 16px system;
+}
+
 /* page container */
 .page-container {
   height: 100vh;
