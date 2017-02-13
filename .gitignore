@@ -4,3 +4,4 @@ node_modules/
 *.map
 *.log
 src/css/styles.css
+dist

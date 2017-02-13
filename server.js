@@ -28,10 +28,10 @@ mongoc.connect(url)
   });
 
   // Install routers
-  const srcd = path.join(__dirname, 'src');
-  app.use(express.static(srcd));
+  const dist_dir = path.join(__dirname, 'dist');
+  app.use(express.static(dist_dir));
   app.get('/', (req, res, next) => {
-    res.status(200).sendFile(path.join(srcd, 'mock.html'));
+    res.status(200).sendFile(path.join(dist_dir, 'mock.html'));
   });
 
   app.route('/:collection/:id?')
