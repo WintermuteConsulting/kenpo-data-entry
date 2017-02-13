@@ -2,8 +2,10 @@
 var { MongoClient: mongoc, ObjectID } = require('mongodb');
 var express = require('express');
 var bodyParser = require('body-parser');
+var path = require('path');
 const R = require('ramda');
 const { stringifyID } = require('./helpful');
+const { open: openURL } = require('openurl');
 
 // Routing paths
 var root = require('./routes/root');
@@ -26,7 +28,12 @@ mongoc.connect(url)
   });
 
   // Install routers
-  app.use(root);
+  const dist_dir = path.join(__dirname, 'dist');
+  app.use(express.static(dist_dir));
+  app.get('/', (req, res, next) => {
+    res.status(200).sendFile(path.join(dist_dir, 'mock.html'));
+  });
+
   app.route('/:collection/:id?')
   .all((req, res, next) => {
     const { collection: name, id } = req.params;
@@ -85,9 +92,10 @@ mongoc.connect(url)
     }
   })
 
-  // Start the server
+  // Start the server and open the web browser
   app.listen(3000, () => {
     console.log('Connected to database. Listening on port 3000...');
+    openURL('http://localhost:3000');
   });
 
 })
@@ -95,5 +103,3 @@ mongoc.connect(url)
   console.log(`[!] ${err}. Check that mongod is running!`);
   process.exitCode = 1;
 });
-
-

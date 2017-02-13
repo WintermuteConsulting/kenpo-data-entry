@@ -1,0 +1,42 @@
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <symbol id="add" viewBox="0 0 15 15" stroke="#000000" stroke-width="1" fill="none">
+      <path d="M7.5,0 L7.5,15" id="Line"></path>
+      <path d="M0,7.5 L15,7.5" id="Line"></path>
+    </symbol>
+    <symbol id="expand" viewBox="0 0 15 15" stroke="#000000" stroke-width="1" fill="none">
+      <circle cx="7.5" cy="7.5" r="7"></circle>
+      <path d="M4,7.5 L11,7.5"></path>
+      <path d="M7.5,11 L7.5,4"></path>
+    </symbol>
+    <symbol id="collapse" viewBox="0 0 15 15" stroke="#000000" stroke-width="1" fill="none">
+      <circle id="Oval-4" cx="7.5" cy="7.5" r="7"></circle>
+      <path d="M4,7.5 L11,7.5" id="Line"></path>
+    </symbol>
+    <symbol id="trash" viewBox="0 0 14 16" stroke="#000000" stroke-width="1" fill="none">
+      <path d="M1.5,3.5 L12.5,3.5 L12.5,13.4914698 C12.5,14.6007504 11.5998238,15.5 10.507983,15.5 L3.49201702,15.5 C2.3918564,15.5 1.5,14.5980496 1.5,13.4914698 L1.5,3.5 Z"></path>
+      <path d="M0,3.5 L14,3.5"></path>
+      <path d="M4.5,6 L4.5,13"></path>
+      <path d="M7,6 L7,13"></path>
+      <path d="M9.5,6 L9.5,13"></path>
+      <path d="M4.0933281,1.46573222 C4.2488912,0.932373041 4.82261205,0.5 5.3748423,0.5 L8.6251577,0.5 C9.17735535,0.5 9.75036617,0.929826856 9.9066719,1.46573222 L10.5,3.5 L3.5,3.5 L4.0933281,1.46573222 Z"></path>
+    </symbol>
+  <symbol id="search" viewBox="0 0 15 15" stroke="#000000" stroke-width="1" fill="none">
+    <circle cx="6" cy="6" r="5.5"></circle>
+    <path d="M10,10 L14.5891228,14.5891228"></path>
+  </symbol>
+  <symbol id="add-degree" viewBox="0 0 15 15" stroke="#000000" stroke-width="1" fill="none">
+    <path d="M13,0 L13,15" stroke-width="2"></path>
+    <path d="M10,0 L10,15" stroke-width="2"></path>
+    <path d="M4.5,4 L4.5,11"></path>
+    <path d="M1,7.5 L8,7.5"></path>
+    <path d="M7,0 L7,6" stroke-width="2"></path>
+    <path d="M7,9 L7,15" stroke-width="2"></path>
+  </symbol>
+  <symbol id="delete-degree" viewBox="0 0 15 15" stroke="#000000" stroke-width="1" fill="none">
+    <path d="M13,0 L13,15" stroke-width="2"></path>
+    <path d="M10,0 L10,15" stroke-width="2"></path>
+    <path d="M1,7.5 L8,7.5"></path>
+    <path d="M7,0 L7,6" stroke-width="2"></path>
+    <path d="M7,9 L7,15" stroke-width="2"></path>
+  </symbol>
+</svg>
