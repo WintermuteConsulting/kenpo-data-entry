@@ -4,12 +4,7 @@
   "description": "data entry tool for the mykenpo database",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build-css": "node-sass --include-path scss src/sass/styles.scss dist/css/styles.css",
-    "copy-assets": "cp src/mock.html src/icons.svg dist && cp src/css/system-font.css dist/css",
-
-    "build": "npm run build-css && npm run copy-assets",
-    "prestart": "npm run build"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
@@ -31,7 +26,5 @@
     "openurl": "^1.1.1",
     "ramda": "^0.23.0"
   },
-  "devDependencies": {
-    "node-sass": "^4.5.0"
-  }
+  "devDependencies": {}
 }
