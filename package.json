@@ -5,7 +5,8 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "lint:js": "eslint src tools"
+    "lint:js": "eslint src tools",
+    "lint:css": "stylelint \"src/**/*.{css,less,scss,sss}\""
   },
   "repository": {
     "type": "git",
@@ -33,7 +34,9 @@
     "eslint-config-airbnb": "^14.1.0",
     "eslint-plugin-import": "^2.2.0",
     "eslint-plugin-jsx-a11y": "^4.0.0",
-    "eslint-plugin-react": "^6.9.0"
+    "eslint-plugin-react": "^6.9.0",
+    "stylelint": "^7.8.0",
+    "stylelint-config-standard": "^16.0.0"
   },
   "eslintConfig": {
     "parser": "babel-eslint",
@@ -52,6 +55,28 @@
       "import/no-extraneous-dependencies": "off",
       "react/jsx-filename-extension": "off",
       "react/prefer-stateless-function": "off"
+    }
+  },
+  "stylelint": {
+    "extends": "stylelint-config-standard",
+    "rules": {
+      "string-quotes": "single",
+      "property-no-unknown": [
+        true,
+        {
+          "ignoreProperties": [
+            "composes"
+          ]
+        }
+      ],
+      "selector-pseudo-class-no-unknown": [
+        true,
+        {
+          "ignorePseudoClasses": [
+            "global"
+          ]
+        }
+      ]
     }
   }
 }
