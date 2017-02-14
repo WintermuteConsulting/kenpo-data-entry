@@ -7,9 +7,6 @@ const R = require('ramda');
 const { stringifyID } = require('./helpful');
 const { open: openURL } = require('openurl');
 
-// Routing paths
-var root = require('./routes/root');
-
 // Express configuration
 var app = express();
 app.use(bodyParser.json());
