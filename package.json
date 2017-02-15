@@ -119,17 +119,14 @@
   "pre-commit": "lint:staged",
   "lint-staged": {
     "*.{cmd,html,json,md,sh,txt,xml,yml}": [
-      "editorconfig-tools fix",
-      "git add"
+      "editorconfig-tools fix"
     ],
     "*.{js,jsx}": [
-      "eslint --fix",
-      "git add"
+      "eslint --fix"
     ],
     "*.{css,less,scss,sss}": [
       "stylefmt",
-      "stylelint",
-      "git add"
+      "stylelint"
     ]
   }
 }
