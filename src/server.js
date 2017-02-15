@@ -25,10 +25,10 @@ mongoc.connect(url)
   });
 
   // Install routers
-  const dist_dir = path.join(__dirname, 'dist');
-  app.use(express.static(dist_dir));
+  const publicDir = path.join(__dirname, 'public');
+  app.use(express.static(publicDir));
   app.get('/', (req, res, next) => {
-    res.status(200).sendFile(path.join(dist_dir, 'mock.html'));
+    res.status(200).sendFile(path.join(publicDir, 'mock.html'));
   });
 
   app.route('/:collection/:id?')
@@ -89,12 +89,10 @@ mongoc.connect(url)
     }
   })
 
-  // Start the server and open the web browser
+  // Start the server
   app.listen(3000, () => {
-    console.log('Connected to database. Listening on port 3000...');
-    openURL('http://localhost:3000');
+    console.log('The server is running at http://localhost:3000/');
   });
-
 })
 .catch(err => {
   console.log(`[!] ${err}. Check that mongod is running!`);

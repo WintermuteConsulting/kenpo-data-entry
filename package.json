@@ -17,7 +17,9 @@
     "copy": "babel-node tools/run copy",
     "bundle": "babel-node tools/run bundle",
     "build": "babel-node tools/run build",
-    "stats": "babel-node tools/run stats"
+    "stats": "babel-node tools/run stats",
+    "start": "babel-node tools/run start",
+    "serve": "babel-node tools/run runServer"
   },
   "repository": {
     "type": "git",
@@ -39,7 +41,9 @@
     "isomorphic-style-loader": "^1.1.0",
     "mongodb": "^2.2.20",
     "openurl": "^1.1.1",
-    "ramda": "^0.23.0"
+    "ramda": "^0.23.0",
+    "react": "^15.4.2",
+    "react-dom": "^15.4.2"
   },
   "devDependencies": {
     "assets-webpack-plugin": "^3.5.1",
@@ -52,6 +56,7 @@
     "babel-preset-react": "^6.23.0",
     "babel-preset-react-optimize": "^1.0.1",
     "babel-preset-stage-2": "^6.22.0",
+    "browser-sync": "^2.18.8",
     "chokidar": "^1.6.1",
     "css-loader": "^0.26.1",
     "editorconfig-tools": "^0.1.1",
@@ -87,13 +92,17 @@
     "postcss-url": "^5.1.2",
     "pre-commit": "^1.2.2",
     "raw-loader": "^0.5.1",
+    "react-hot-loader": "^3.0.0-beta.6",
     "rimraf": "^2.5.4",
     "source-map-support": "^0.4.11",
     "stylefmt": "^5.1.2",
     "stylelint": "^7.8.0",
     "stylelint-config-standard": "^16.0.0",
     "url-loader": "^0.5.7",
-    "webpack": "^2.2.1"
+    "webpack": "^2.2.1",
+    "webpack-dev-middleware": "^1.10.0",
+    "webpack-hot-middleware": "^2.17.0",
+    "write-file-webpack-plugin": "^3.4.2"
   },
   "browserslist": [
     ">1%",
