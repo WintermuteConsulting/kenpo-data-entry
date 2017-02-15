@@ -3,5 +3,5 @@ node_modules/
 *.swp
 *.map
 *.log
-src/css/styles.css
-dist
+build
+stats.json
