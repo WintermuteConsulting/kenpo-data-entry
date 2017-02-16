@@ -8,7 +8,7 @@
   },
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "tape -r babel-register \"src/**/*.test.js\" | faucet",
     "lint:js": "eslint src tools",
     "lint:css": "stylelint \"src/**/*.{css,less,scss,sss}\"",
     "lint:staged": "lint-staged",
@@ -56,6 +56,7 @@
     "babel-preset-react": "^6.23.0",
     "babel-preset-react-optimize": "^1.0.1",
     "babel-preset-stage-2": "^6.22.0",
+    "babel-register": "^6.23.0",
     "browser-sync": "^2.18.8",
     "chokidar": "^1.6.1",
     "css-loader": "^0.26.1",
