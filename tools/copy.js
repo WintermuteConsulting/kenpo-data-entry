@@ -29,6 +29,7 @@ async function copy() {
       },
     }, null, 2)),
     copyDir('public', 'build/public'),
+    copyDir('src/views', 'build/views'),
   ]);
 
   if (process.argv.includes('--watch')) {

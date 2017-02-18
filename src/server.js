@@ -9,6 +9,8 @@ import stringifyID from './stringifyID';
 // Express configuration
 const app = express();
 app.use(bodyParser.json());
+app.set('view engine', 'pug');
+app.set('views', './build/views');
 
 // Server configuration
 const url = 'mongodb://localhost:27017/mykenpo';
@@ -27,7 +29,7 @@ mongoc.connect(url)
   const publicDir = path.join(__dirname, 'public');
   app.use(express.static(publicDir));
   app.get('/', (req, res) => {
-    res.status(200).sendFile(path.join(publicDir, 'mock.html'));
+    res.render('index', {});
   });
 
   app.route('/:collection/:id?')
