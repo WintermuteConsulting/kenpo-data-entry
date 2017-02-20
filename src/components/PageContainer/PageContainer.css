@@ -1,0 +1,6 @@
+.pageContainer {
+  height: 100vh;
+  background-color: #ededed;
+  display: flex;
+  flex-direction: column;
+}
