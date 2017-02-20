@@ -1,2 +1,8 @@
-// This is a stub implementation of client.js
-// It allows webpack to work properly until real files are created
+import React from 'react';
+import ReactDOM from 'react-dom';
+import PageContainer from './components/PageContainer/PageContainer';
+
+ReactDOM.render(
+  <PageContainer />,
+  document.getElementById('react-root'),
+);
