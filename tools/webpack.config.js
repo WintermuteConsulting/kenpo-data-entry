@@ -10,6 +10,7 @@
 import path from 'path';
 import webpack from 'webpack';
 import AssetsPlugin from 'assets-webpack-plugin';
+import ExtractTextPlugin from 'extract-text-webpack-plugin';
 import pkg from '../package.json';
 
 const isDebug = !process.argv.includes('--release');
@@ -76,31 +77,26 @@ const config = {
       },
       {
         test: /\.css/,
-        use: [
-          {
-            loader: 'isomorphic-style-loader',
-          },
-          {
-            loader: 'css-loader',
-            options: {
-              // CSS Loader https://github.com/webpack/css-loader
-              importLoaders: 1,
-              sourceMap: isDebug,
-              // CSS Modules https://github.com/css-modules/css-modules
-              modules: true,
-              localIdentName: isDebug ? '[name]-[local]-[hash:base64:5]' : '[hash:base64:5]',
-              // CSS Nano http://cssnano.co/options/
-              minimize: !isDebug,
-              discardComments: { removeAll: true },
+        loader: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: [
+            {
+              loader: 'css-loader',
+              query: {
+                importLoaders: 1,
+                sourceMap: isDebug,
+                modules: true,
+                localIdentName: isDebug ? '[name]-[local]-[hash:base64:5]' : '[hash:base64:5]',
+                minimize: !isDebug,
+                discardComments: { removeAll: true },
+              },
             },
-          },
-          {
-            loader: 'postcss-loader',
-            options: {
-              config: './tools/postcss.config.js',
+            {
+              loader: 'postcss-loader',
+              query: { config: './tools/postcss.config.js' },
             },
-          },
-        ],
+          ],
+        }),
       },
       {
         test: /\.md$/,
@@ -173,6 +169,10 @@ const clientConfig = {
   resolve: { ...config.resolve },
 
   plugins: [
+    // Extract CSS into a single file
+    // https://github.com/webpack-contrib/extract-text-webpack-plugin
+    new ExtractTextPlugin('styles/styles.css'),
+
     // Define free variables
     // https://webpack.github.io/docs/list-of-plugins.html#defineplugin
     new webpack.DefinePlugin({
