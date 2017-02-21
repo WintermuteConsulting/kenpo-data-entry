@@ -1,13 +1,14 @@
 import React from 'react';
 import classNames from 'classnames';
 import styles from './Workspace.css';
+import View from '../View/View';
 
 function Workspace(props) {
   return (
     <div className={classNames(styles.self, props.injectedClassName)}>
-      <div className={styles.pane} />
+      <View injectedClassName={styles.pane} title="Techniques" />
       <div className={styles.paneDivider} />
-      <div className={styles.pane} />
+      <View injectedClassName={styles.pane} title="Ranks" />
     </div>
   );
 }
