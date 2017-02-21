@@ -4,3 +4,8 @@
   display: flex;
   flex-direction: column;
 }
+
+/* assuming the 1st child is the header, select the 2nd child to expand vertically */
+.self > :nth-child(2) {
+  flex: 1;
+}
