@@ -37,6 +37,7 @@
   "dependencies": {
     "babel-polyfill": "^6.23.0",
     "body-parser": "^1.15.2",
+    "classnames": "^2.2.5",
     "express": "^4.14.0",
     "isomorphic-style-loader": "^1.1.0",
     "mongodb": "^2.2.20",
