@@ -1,15 +1,15 @@
 import React from 'react';
-import styles from './PageContainer.css';
+import styles from './App.css';
 import Header from '../Header/Header';
 import Workspace from '../Workspace/Workspace';
 
-function PageContainer() {
+function App() {
   return (
-    <div className={styles.pageContainer}>
+    <div className={styles.self}>
       <Header />
       <Workspace />
     </div>
   );
 }
 
-export default PageContainer;
+export default App;
