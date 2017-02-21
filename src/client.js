@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import PageContainer from './components/PageContainer/PageContainer';
+import App from './components/App/App';
 
 ReactDOM.render(
-  <PageContainer />,
+  <App />,
   document.getElementById('react-root'),
 );
