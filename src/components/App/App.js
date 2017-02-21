@@ -7,7 +7,7 @@ function App() {
   return (
     <div className={styles.self}>
       <Header />
-      <Workspace />
+      <Workspace injectedClassName={styles.content} />
     </div>
   );
 }
