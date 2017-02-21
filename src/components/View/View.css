@@ -1,0 +1,13 @@
+.self {
+  display: flex;
+  flex-direction: column;
+}
+
+.contentContainer {
+  flex: 1;
+  overflow: scroll;
+}
+
+.content {
+  padding: 12px 0;
+}
