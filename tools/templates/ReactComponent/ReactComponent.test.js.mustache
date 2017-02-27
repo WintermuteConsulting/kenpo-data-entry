@@ -1,0 +1,11 @@
+import test from 'tape';
+import React from 'react';
+import { shallow } from 'enzyme';
+import {{name}} from './{{name}}';
+import styles from './{{name}}.css';
+
+test('{{name}} renders itself', (t) => {
+  const wrapper = shallow(<{{name}} />);
+  t.assert(wrapper.containsMatchingElement(<{{name}} />), 'tests for {{name}} are not implemented');
+  t.end();
+});
