@@ -1,0 +1,15 @@
+.self {
+  display: flex;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 5px;
+  background-color: black;
+  margin-right: 10px;
+}
+
+.dot:last-child {
+  margin: 0;
+}
