@@ -11,7 +11,8 @@ const mapStateToProps = ({ selection, data }) => (
 
 const mapDispatchToProps = dispatch => (
   {
-    onChange: (id) => {
+    onChange: (e) => {
+      const id = e.target.value;
       dispatch(setSelection(id));
     },
   }
