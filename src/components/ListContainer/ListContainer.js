@@ -1,9 +1,10 @@
 import { connect } from 'react-redux';
 import setSelection from '../../actions/actions';
-import ListBox from '../ListBox/ListBox';
+import Option from '../Option/Option';
 
 const mapStateToProps = ({ selection, data }) => (
   {
+    type: 'dropdown',
     options: Object.keys(data).map(key => ({ id: key, text: data[key].title })),
     value: selection,
   }
@@ -21,6 +22,6 @@ const mapDispatchToProps = dispatch => (
 const ListContainer = connect(
   mapStateToProps,
   mapDispatchToProps,
-)(ListBox);
+)(Option);
 
 export default ListContainer;
