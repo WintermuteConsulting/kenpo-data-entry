@@ -6,6 +6,8 @@ import path from 'path';
 import R from 'ramda';
 import stringifyID from './stringifyID';
 
+const root = require('./root');
+
 // Express configuration
 const app = express();
 app.use(bodyParser.json());
@@ -28,9 +30,7 @@ mongoc.connect(url)
   // Install routers
   const publicDir = path.join(__dirname, 'public');
   app.use(express.static(publicDir));
-  app.get('/', (req, res) => {
-    res.render('index', {});
-  });
+  app.use('/', root);
 
   app.route('/:collection/:id?')
   .all((req, res) => {

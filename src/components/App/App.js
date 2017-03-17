@@ -1,14 +1,9 @@
 import React from 'react';
-import styles from './App.css';
-import Header from '../Header/Header';
-import Workspace from '../Workspace/Workspace';
+import ListContainer from '../ListContainer/ListContainer';
 
 function App() {
   return (
-    <div className={styles.self}>
-      <Header />
-      <Workspace injectedClassName={styles.content} />
-    </div>
+    <ListContainer />
   );
 }
 
