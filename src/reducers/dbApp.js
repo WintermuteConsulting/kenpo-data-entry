@@ -1,16 +1,11 @@
-const initialState = {
-  selection: '',
-  data: {},
-};
+import selection from './selection';
+import data from './data';
 
-function dbApp(state = initialState, action) {
-  switch (action.type) {
-    case 'SET_SELECTION':
-      return Object.assign({}, state, { selection: action.id });
-
-    default:
-      return state;
-  }
+function dbApp(state, action) {
+  return {
+    selection: selection(state.selection, action),
+    data: data(state.data, action),
+  };
 }
 
 export default dbApp;
