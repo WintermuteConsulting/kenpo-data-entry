@@ -21,3 +21,10 @@ test('text input applies a passed-in value', (t) => {
   t.is(wrapper.prop('value'), mock, 'value is not empty');
   t.end();
 });
+
+test('text input assigns an id if supplied', (t) => {
+  const mock = 'foo';
+  const wrapper = shallow(<TextInput id={mock} />);
+  t.is(wrapper.prop('id'), mock, 'missing id');
+  t.end();
+});
