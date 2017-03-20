@@ -4,7 +4,6 @@ import Option from '../Option/Option';
 
 const mapStateToProps = ({ selection, data }) => (
   {
-    type: 'dropdown',
     options: Object.keys(data).map(key => ({ id: key, text: data[key].title })),
     value: selection,
   }
