@@ -14,8 +14,11 @@ export const ids = {
 class TechniqueForm extends React.Component {
   constructor(props) {
     super(props);
-    const data = props.data;
-    this.state = { title: data.title, attack: data.attack };
+    this.state = props.initialData;
+  }
+
+  componentWillReceiveProps(props) {
+    this.setState(props.initialData);
   }
 
   makeHandler(key) {
@@ -41,7 +44,7 @@ class TechniqueForm extends React.Component {
 }
 
 TechniqueForm.propTypes = {
-  data: React.PropTypes.shape({
+  initialData: React.PropTypes.shape({
     title: React.PropTypes.string,
     attack: React.PropTypes.string,
   }),
@@ -49,7 +52,7 @@ TechniqueForm.propTypes = {
 };
 
 TechniqueForm.defaultProps = {
-  data: { title: '', attack: '' },
+  initialData: { title: '', attack: '' },
   onSubmit: undefined,
 };
 

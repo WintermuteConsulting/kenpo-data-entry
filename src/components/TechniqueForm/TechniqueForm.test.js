@@ -25,7 +25,7 @@ test('technique form applies initial data to inputs', (t) => {
     title: 'Lurking Tiger Strike',
     attack: 'front left do-si-do',
   };
-  const wrapper = shallow(<TechniqueForm data={mock} />);
+  const wrapper = shallow(<TechniqueForm initialData={mock} />);
   t.is(wrapper.find(`#${ids.title}`).prop('value'), mock.title, 'title is not applied');
   t.is(wrapper.find(`#${ids.attack}`).prop('value'), mock.attack, 'attack is not applied');
   t.end();
@@ -40,7 +40,7 @@ test('technique form can update its inputs', (t) => {
     title: `${mock.title} Tiger`,
     attack: `${mock.attack} nelson`,
   };
-  const wrapper = shallow(<TechniqueForm data={mock} />);
+  const wrapper = shallow(<TechniqueForm initialData={mock} />);
   wrapper.find(`#${ids.title}`).simulate('change', { target: { value: expected.title } });
   wrapper.find(`#${ids.attack}`).simulate('change', { target: { value: expected.attack } });
   t.is(wrapper.find(`#${ids.title}`).prop('value'), expected.title, 'title is not applied');
