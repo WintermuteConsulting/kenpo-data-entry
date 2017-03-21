@@ -9,10 +9,10 @@ const App = require('./components/App/App').default;
 const mock = {
   selection: '',
   data: {
-    '1jiu192': { title: 'Groveling Hands' },
-    '291038s': { title: 'Graceful Retreat' },
-    '2949dda': { title: 'Pondering Crane Strike' },
-    '0fds02s': { title: 'Lurking Tiger Punch' },
+    '1jiu192': { title: 'Groveling Hands', attack: 'front left lapel grab' },
+    '291038s': { title: 'Graceful Retreat', attack: 'rear hair pull' },
+    '2949dda': { title: 'Pondering Crane Strike', attack: 'right side leg sweep' },
+    '0fds02s': { title: 'Lurking Tiger Punch', attack: 'left side elbow punch' },
   },
 };
 
