@@ -1,9 +1,13 @@
 import React from 'react';
 import ListContainer from '../ListContainer/ListContainer';
+import FormContainer from '../FormContainer/FormContainer';
 
 function App() {
   return (
-    <ListContainer />
+    <div style={{ display: 'flex' }}>
+      <ListContainer />
+      <FormContainer />
+    </div>
   );
 }
 
