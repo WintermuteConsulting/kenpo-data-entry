@@ -5,7 +5,7 @@ import sinon from 'sinon';
 import TechniqueForm, { ids } from './TechniqueForm';
 
 test('technique form renders a form with title, attack fields and submit', (t) => {
-  const wrapper = shallow(<TechniqueForm />);
+  const wrapper = shallow(<TechniqueForm id="foo" />);
   t.is(wrapper.find('form').length, 1, 'missing form element');
   t.is(wrapper.find('button[type="submit"]').length, 1, 'missing submit button');
   t.is(wrapper.find(`#${ids.title}`).length, 1, 'missing title input');
@@ -14,7 +14,7 @@ test('technique form renders a form with title, attack fields and submit', (t) =
 });
 
 test('technique form is empty if not supplied with data', (t) => {
-  const wrapper = shallow(<TechniqueForm />);
+  const wrapper = shallow(<TechniqueForm id="foo" />);
   t.is(wrapper.find(`#${ids.title}`).prop('value'), '', 'title is not empty');
   t.is(wrapper.find(`#${ids.attack}`).prop('value'), '', 'attack is not empty');
   t.end();
@@ -25,7 +25,7 @@ test('technique form applies initial data to inputs', (t) => {
     title: 'Lurking Tiger Strike',
     attack: 'front left do-si-do',
   };
-  const wrapper = shallow(<TechniqueForm initialData={mock} />);
+  const wrapper = shallow(<TechniqueForm id="foo" initialData={mock} />);
   t.is(wrapper.find(`#${ids.title}`).prop('value'), mock.title, 'title is not applied');
   t.is(wrapper.find(`#${ids.attack}`).prop('value'), mock.attack, 'attack is not applied');
   t.end();
@@ -40,7 +40,7 @@ test('technique form can update its inputs', (t) => {
     title: `${mock.title} Tiger`,
     attack: `${mock.attack} nelson`,
   };
-  const wrapper = shallow(<TechniqueForm initialData={mock} />);
+  const wrapper = shallow(<TechniqueForm id="foo" initialData={mock} />);
   wrapper.find(`#${ids.title}`).simulate('change', { target: { value: expected.title } });
   wrapper.find(`#${ids.attack}`).simulate('change', { target: { value: expected.attack } });
   t.is(wrapper.find(`#${ids.title}`).prop('value'), expected.title, 'title is not applied');
@@ -50,8 +50,21 @@ test('technique form can update its inputs', (t) => {
 
 test('technique form uses its prop submit handler', (t) => {
   const callback = sinon.spy();
-  const wrapper = shallow(<TechniqueForm onSubmit={callback} />);
+  const wrapper = shallow(<TechniqueForm id="foo" onSubmit={callback} />);
   wrapper.find('button[type="submit"]').simulate('click', { preventDefault() {} });
   t.assert(callback.called, 'submit handler not called');
+  t.end();
+});
+
+test('technique form passes id and state to submit handler', (t) => {
+  const mockData = {
+    title: 'bar',
+    attack: 'baz',
+  };
+  const mockId = 'foo';
+  const callback = sinon.spy();
+  const wrapper = shallow(<TechniqueForm id={mockId} initialData={mockData} onSubmit={callback} />);
+  wrapper.find('button[type="submit"]').simulate('click', { preventDefault() {} });
+  t.assert(callback.calledWith(mockId, mockData), 'arguments do not match id, data');
   t.end();
 });
