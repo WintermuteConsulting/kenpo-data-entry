@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import setSelection from '../../actions/actions';
+import { setSelection } from '../../actions/actions';
 import Option from '../Option/Option';
 
 const mapStateToProps = ({ selection, data }) => (
