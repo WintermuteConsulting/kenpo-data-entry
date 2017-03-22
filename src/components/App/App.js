@@ -1,11 +1,17 @@
 import React from 'react';
 import ListContainer from '../ListContainer/ListContainer';
 import FormContainer from '../FormContainer/FormContainer';
+import ButtonContainer from '../ButtonContainer/ButtonContainer';
+import { createItem, deleteItem } from '../../actions/actions';
 
 function App() {
   return (
     <div style={{ display: 'flex' }}>
-      <ListContainer />
+      <div>
+        <div><ListContainer /></div>
+        <ButtonContainer action={createItem}>＋</ButtonContainer>
+        <ButtonContainer action={deleteItem}>－</ButtonContainer>
+      </div>
       <FormContainer />
     </div>
   );
