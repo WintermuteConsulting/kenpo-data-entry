@@ -21,10 +21,9 @@ function dbApp(state = defaultState, action) {
 
     case 'CREATE_ITEM': {
       // create a new item and set it as the selection
-      const timestamp = Date.now().toString();
       return compose(
-        set(selectionLens, timestamp),
-        set(itemLens(timestamp), emptyItem),
+        set(selectionLens, action.id),
+        set(itemLens(action.id), emptyItem),
       )(state);
     }
 
