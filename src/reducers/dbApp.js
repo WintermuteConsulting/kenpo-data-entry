@@ -1,4 +1,4 @@
-import { lensProp, lensPath, view, set, compose } from 'ramda';
+import { lensProp, lensPath, view, set, compose, dissoc } from 'ramda';
 
 const emptyItem = {
   title: 'Untitled technique',
@@ -39,10 +39,7 @@ function dbApp(state = defaultState, action) {
       // delete the selected item and set the selection to nothing
       const selection = view(selectionLens, state);
       if (selection !== '') {
-        const newData =
-          Object.keys(view(dataLens, state))
-          .filter(key => key !== selection)
-          .reduce((obj, key) => Object.assign(obj, { [key]: view(itemLens(key), state) }), {});
+        const newData = dissoc(selection, view(dataLens, state));
         return compose(
           set(selectionLens, ''),
           set(dataLens, newData),
