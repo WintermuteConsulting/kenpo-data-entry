@@ -16,7 +16,7 @@ const maybeObjectID = maybeTry(ObjectID);
 // need to service a POST request?
 // handleRequest(handleCollection(createOne))
 // etc
-function* handleRequest(client, params, genf) {
+export function* handleRequest(client, params, genf) {
   try {
     const db = yield apply(client, client.connect);
     try {
@@ -35,7 +35,7 @@ function* handleRequest(client, params, genf) {
 
 // --- HANDLE ITEM ---------------------------------------------------------
 // decorates a generator with ObjectId testing
-function* handleItem(collection, params, genf) {
+export function* handleItem(collection, params, genf) {
   const oid = maybeObjectID(params.id);
   if (oid) {
     try {
@@ -50,7 +50,7 @@ function* handleItem(collection, params, genf) {
 }
 
 // --- HANDLE COLLECTION ------------------------------------------------------
-function* handleCollection(collection, params, genf) {
+export function* handleCollection(collection, params, genf) {
   try {
     // delegate to a generator that handles a collection
     return yield* genf(collection, params.body);
@@ -61,7 +61,7 @@ function* handleCollection(collection, params, genf) {
 
 // --- BOTTOM-LEVEL GENERATORS ------------------------------------------------
 // Gets the specified item from the collection.
-function* getOne(id, collection) {
+export function* getOne(id, collection) {
   const query = { _id: id };
   const result = yield apply(collection, collection.findOne, query);
   if (result) {
@@ -71,7 +71,7 @@ function* getOne(id, collection) {
 }
 
 // Replaces the item in the collection.
-function* putOne(id, collection, reqBody) {
+export function* putOne(id, collection, reqBody) {
   const query = { _id: id };
   const result = yield apply(collection, collection.findOneAndReplace, query, reqBody);
   if (result.value) {
@@ -81,7 +81,7 @@ function* putOne(id, collection, reqBody) {
 }
 
 // Deletes the item from the collection.
-function* deleteOne(id, collection) {
+export function* deleteOne(id, collection) {
   const query = { _id: id };
   const result = yield apply(collection, collection.findOneAndDelete, query);
   if (result.value) {
@@ -91,7 +91,7 @@ function* deleteOne(id, collection) {
 }
 
 // Gets all of the items in a collection.
-function* getMany(collection) {
+export function* getMany(collection) {
   const cursor = collection.find();
   const results = yield apply(cursor, cursor.toArray);
   const data = Object.assign({}, ...results.map(transmog));
@@ -99,18 +99,7 @@ function* getMany(collection) {
 }
 
 // Inserts an item into the specified collection.
-function* createOne(collection, reqBody) {
+export function* createOne(collection, reqBody) {
   const result = yield apply(collection, collection.insertOne, reqBody);
   return new Response({ status: 201, Location: result.insertedId.toHexString() });
 }
-
-export {
-  handleRequest,
-  handleItem,
-  handleCollection,
-  getOne,
-  putOne,
-  deleteOne,
-  getMany,
-  createOne,
-};

@@ -1,7 +1,7 @@
 import { curry } from 'ramda';
 import { mapYield } from './helpful';
 
-function apply(obj, method, ...args) {
+export function apply(obj, method, ...args) {
   return ({
     type: 'APPLY',
     params: {
@@ -12,7 +12,7 @@ function apply(obj, method, ...args) {
   });
 }
 
-function invoke(effect) {
+export function invoke(effect) {
   switch (effect.type) {
     case 'APPLY': {
       const { obj, method, args } = effect.params;
@@ -24,6 +24,4 @@ function invoke(effect) {
   }
 }
 
-const run = curry(mapYield)(invoke);
-
-export { apply, invoke, run };
+export const run = curry(mapYield)(invoke);
