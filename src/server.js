@@ -6,8 +6,6 @@ import path from 'path';
 import { expressify, expand } from './utils/helpful';
 import * as handle from './utils/pretty';
 
-const root = require('./root');
-
 // DB configuration
 const url = 'mongodb://localhost:27017/mykenpo';
 const client = {
@@ -21,7 +19,11 @@ app.set('view engine', 'pug');
 app.set('views', './build/views');
 const publicDir = path.join(__dirname, 'public');
 app.use(express.static(publicDir));
-app.use('/', root);
+
+app.get('/', (req, res) => {
+  handle.getClient(client)
+  .then(result => expressify(res, result));
+});
 
 app.route('/:collection')
   .get((req, res) => {

@@ -2,6 +2,7 @@
 import co from 'co';
 import { curry, __ as _ } from 'ramda';
 import * as handler from './handlers';
+import renderClient from './renderClient';
 import { run } from './effects';
 
 const request = curry(handler.handleRequest);
@@ -46,4 +47,8 @@ export function deleteItem(mongoc, params) {
       request(_, _, onItem(_, _, handler.deleteOne))
     )(mongoc, params)
   );
+}
+
+export function getClient(mongoc) {
+  return co(run(renderClient)(mongoc));
 }
