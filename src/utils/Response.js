@@ -1,25 +1,32 @@
 class Response {
-  constructor(header, body) {
-    this.header = header;
-    if (body) {
-      this.body = body;
-    }
+  ok() {
+    this.status = 200;
+    return this;
   }
 
-  static ok(body) {
-    return new Response({ status: 200 }, body);
+  created() {
+    this.status = 201;
+    return this;
   }
 
-  static notFound(body) {
-    return new Response({ status: 404 }, body);
+  notFound() {
+    this.status = 404;
+    return this;
   }
 
-  static serverError(body) {
-    return new Response({ status: 500 }, body);
+  serverError() {
+    this.status = 500;
+    return this;
   }
 
-  static created(body) {
-    return new Response({ status: 201 }, body);
+  withHeader(fields) {
+    this.header = fields;
+    return this;
+  }
+
+  withBody(data) {
+    this.body = data;
+    return this;
   }
 }
 

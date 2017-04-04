@@ -31,7 +31,7 @@ const coll = {
 };
 
 // eslint-disable-next-line func-names
-const trivial = function* () { yield; return Response.ok(); };
+const trivial = function* () { yield; return new Response().ok(); };
 
 const params = {
   id: ObjectID.createFromHexString('000000000000000000000004'),
@@ -66,7 +66,7 @@ test('test handleRequest', (t) => {
     );
     st.deepEqual(
       gen.throw().value,
-      Response.serverError(),
+      new Response().serverError(),
       'throwing on client.connect should return SERVER ERROR',
     );
     st.end();
@@ -96,7 +96,7 @@ test('test handleRequest', (t) => {
     );
     st.deepEqual(
       gen.next().value,
-      Response.notFound(),
+      new Response().notFound(),
       'after throwing on db.collection, should return NOT FOUND',
     );
     st.end();
@@ -110,7 +110,7 @@ test('test handleItem', (t) => {
     const gen = handle.handleItem(coll, { id: 'wrong' }, trivial);
     t.deepEqual(
       gen.next().value,
-      Response.notFound(),
+      new Response().notFound(),
       'invalid ID should return NOT FOUND',
     );
     st.end();
@@ -121,7 +121,7 @@ test('test handleItem', (t) => {
     gen.next(); // yield in trivial
     t.deepEqual(
       gen.throw().value,
-      Response.serverError(),
+      new Response().serverError(),
       'throwing on delegated generator should return SERVER ERROR',
     );
     st.end();
@@ -132,7 +132,7 @@ test('test handleItem', (t) => {
     gen.next(); // yield in trivial
     t.deepEqual(
       gen.next().value,
-      Response.ok(),
+      new Response().ok(),
       'happy path should return trivial generator\'s value',
     );
     st.end();
@@ -145,7 +145,7 @@ test('test handleCollection', (t) => {
     gen.next(); // yield in trivial
     st.deepEqual(
       gen.throw().value,
-      Response.serverError(),
+      new Response().serverError(),
       'throwing on delegated generator should return SERVER ERROR',
     );
     st.end();
@@ -156,7 +156,7 @@ test('test handleCollection', (t) => {
     gen.next(); // yield in trivial
     st.deepEqual(
       gen.next().value,
-      Response.ok(),
+      new Response().ok(),
       'happy path should return trivial generator\'s value',
     );
     st.end();
@@ -175,7 +175,7 @@ test('test getOne', (t) => {
   );
   t.deepEqual(
     gen.next(doc).value,
-    Response.ok(moggedDoc),
+    new Response().ok().withBody(moggedDoc),
     'success result should be status:OK, body:doc',
   );
 
@@ -184,7 +184,7 @@ test('test getOne', (t) => {
   gen.next(); // effect tested above
   t.deepEqual(
     gen.next(null).value,
-    Response.notFound(),
+    new Response().notFound(),
     'failure result should be status:NOTFOUND with empty body',
   );
 
@@ -204,7 +204,7 @@ test('test putOne', (t) => {
   );
   t.deepEqual(
     gen.next({ value: doc }).value,
-    Response.ok(),
+    new Response().ok(),
     'success result should be status:OK with empty body',
   );
 
@@ -213,7 +213,7 @@ test('test putOne', (t) => {
   gen.next(); // effect tested above
   t.deepEqual(
     gen.next({ value: null }).value,
-    Response.notFound(),
+    new Response().notFound(),
     'failure result should be status:NOTFOUND with empty body',
   );
 
@@ -232,7 +232,7 @@ test('test deleteOne', (t) => {
   );
   t.deepEqual(
     gen.next({ value: doc }).value,
-    Response.ok(),
+    new Response().ok(),
     'success result should be status:OK with empty body',
   );
 
@@ -241,7 +241,7 @@ test('test deleteOne', (t) => {
   gen.next();
   t.deepEqual(
     gen.next({ value: null }).value,
-    Response.notFound(),
+    new Response().notFound(),
     'failure result should be status:NOTFOUND with empty body',
   );
 
@@ -255,7 +255,7 @@ test('test getMany', (t) => {
 
   const gen = handle.getMany(coll);
   t.deepEqual(gen.next().value, firstEffect, 'first yield should call toArray on the cursor');
-  t.deepEqual(gen.next(premog).value, Response.ok(postmog), 'return should be status:OK with results as nested objects');
+  t.deepEqual(gen.next(premog).value, new Response().ok().withBody(postmog), 'return should be status:OK with results as nested objects');
 
   t.end();
 });
@@ -264,7 +264,7 @@ test('test createOne', (t) => {
   const mockReqBody = { foo: 'bar' };
   const mockID = ObjectID.createFromHexString('000000000000000000000003');
   const expectedEffect = apply(coll, coll.insertOne, mockReqBody);
-  const expectedResult = new Response({ status: 201, Location: mockID.toHexString() });
+  const expectedResult = new Response().created().withHeader({ Location: mockID.toHexString() });
 
   const gen = handle.createOne(coll, mockReqBody);
   t.deepEqual(

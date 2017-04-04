@@ -84,38 +84,35 @@ test('test promiseify', (t) => {
 });
 
 test('test expressify', (t) => {
-  t.test('---> with body', (st) => {
-    const status = sinon.stub(response, 'status').returnsThis();
-    const json = sinon.stub(response, 'json').returnsThis();
-    const template = Response.ok({ foo: 'bar' });
+  const status = sinon.stub(response, 'status').returnsThis();
+  const send = sinon.stub(response, 'send').returnsThis();
+  const set = sinon.stub(response, 'set').returnsThis();
+  const sendStatus = sinon.stub(response, 'sendStatus').returnsThis();
 
+  t.test('──> with header only', (st) => {
+    const template = new Response().created().withHeader({ 'Content-Type': 'text/json' });
     helpful.expressify(response, template);
-
     st.assert(
-      status.calledWith(template.header.status),
-      'res.status should be called with the template status value',
+      set.calledWith(template.header),
+      'res.set should be called with the contents of the template header field',
     );
     st.assert(
-      json.calledWith(template.body),
-      'res.json should be called with the template body',
+      sendStatus.calledWith(template.status),
+      'res.sendStatus should be called with the template status value',
     );
     st.end();
   });
 
-  t.test('---> with header only', (st) => {
-    const set = sinon.stub(response, 'set').returnsThis();
-    const sendStatus = sinon.stub(response, 'sendStatus').returnsThis();
-    const template = new Response({ status: 201, Location: 'somewhere', 'Content-Type': 'text/json' });
-
+  t.test('──> with body', (st) => {
+    const template = new Response().ok().withBody({ foo: 'bar' });
     helpful.expressify(response, template);
-
     st.assert(
-      set.calledWith({ Location: 'somewhere', 'Content-Type': 'text/json' }),
-      'res.set should be called with any header fields other than status',
+      status.calledWith(template.status),
+      'res.status should be called with the template status value',
     );
     st.assert(
-      sendStatus.calledWith(template.header.status),
-      'res.sendStatus should be called with the template status value',
+      send.calledWith(template.body),
+      'res.send should be called with the template body',
     );
     st.end();
   });

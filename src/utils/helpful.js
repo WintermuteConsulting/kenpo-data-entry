@@ -72,13 +72,20 @@ export function promiseify(method) {
 
 // Executes methods on an Express res object using a Response as a template.
 export function expressify(res, template) {
-  if (template.body) {
-    // if there is a body, it's only ever JSON
-    res.status(template.header.status).json(template.body);
+  // Every response has a status, but extra header fields and a body are optional.
+  // If the body is absent, sendStatus(status) should be used, otherwise send(body).
+  // Express will figure out the content-type in the latter case.
+  const { status, header, body } = template;
+  if (body) {
+    if (header) {
+      res.status(status).set(header).send(body);
+    } else {
+      res.status(status).send(body);
+    }
+  } else if (header) {
+    res.set(header).sendStatus(status);
   } else {
-    // otherwise it's just a status and optional header fields
-    const fields = R.dissoc('status', template.header);
-    res.set(fields).sendStatus(template.header.status);
+    res.sendStatus(status);
   }
 }
 
