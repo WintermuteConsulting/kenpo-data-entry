@@ -1,6 +1,6 @@
 import test from 'tape';
 import R from 'ramda';
-import { State, lens, deleteDatum } from './state';
+import State, { lens, deleteDatum } from './state';
 
 test('test state', (t) => {
   t.test('--- constructor', (subt) => {

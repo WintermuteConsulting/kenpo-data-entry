@@ -1,7 +1,7 @@
 import R from 'ramda';
 
 // --- STATE ------------------------------------------------------------------
-export class State {
+export default class State {
   constructor(data = {}, col = '', item = '') {
     this.collection = col;
     this.item = item;
@@ -17,5 +17,5 @@ const datum = (col, id) => R.lensPath(['data', col, id]);
 // Ramda lenses can get and set proprties, but not delete them.
 const deleteDatum = (col, id) => R.dissocPath(['data', col, id]);
 
-export const lens = { collection, item, datum };
-export { deleteDatum };
+const lens = { collection, item, datum };
+export { lens, deleteDatum };
