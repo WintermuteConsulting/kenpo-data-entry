@@ -1,6 +1,6 @@
 import test from 'tape';
 import R from 'ramda';
-import State, { lens, deleteDatum } from './state';
+import State, { lens, getData, deleteDatum } from './state';
 
 test('test state', (t) => {
   t.test('--- constructor', (subt) => {
@@ -74,6 +74,25 @@ test('test state', (t) => {
       deleteDatum('things', 'cheese')(mock),
       { collection: '', item: '', data: { things: {} } },
       'item lens should set the item at the path data.collection.item',
+    );
+    subt.end();
+  });
+  t.test('--- getData', (subt) => {
+    const mock = {
+      collection: 'things',
+      item: '',
+      data: {
+        things: {
+          cheese: 'is amazing',
+          chocolate: 'is delicious',
+          asparagus: 'isn\'t so great',
+        },
+      },
+    };
+    subt.deepEqual(
+      getData('things', mock),
+      mock.data.things,
+      'should return the contents of the specified collection',
     );
     subt.end();
   });
