@@ -8,6 +8,7 @@ import App from '../components/App/App';
 import { apply } from './effects';
 import { transmog, promiseify } from './helpful';
 import Response from './Response';
+import State from '../data/state';
 
 // Renders the client application.
 export default function* renderClient(dbc) {
@@ -19,7 +20,8 @@ export default function* renderClient(dbc) {
       const cursor = collection.find();
       const docs = yield apply(cursor, cursor.toArray);
       const data = Object.assign({}, ...docs.map(transmog));
-      const store = createStore(dbApp, { selection: '', data });
+      const state = new State({ techniques: data }, 'techniques');
+      const store = createStore(dbApp, state);
       const html = renderToString(
         <Provider store={store}>
           <App />
