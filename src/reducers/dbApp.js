@@ -1,56 +1,87 @@
-import { lensProp, lensPath, view, set, compose, dissoc } from 'ramda';
+import { view, set, compose } from 'ramda';
+import State, { lens, deleteDatum } from '../data/state';
+import Technique from '../data/technique';
 
-const emptyItem = {
-  title: 'Untitled technique',
-  attack: '',
-};
-
-const defaultState = {
-  selection: '',
-  data: {},
-};
-
-const selectionLens = lensProp('selection');
-const dataLens = lensProp('data');
-const itemLens = key => lensPath(['data', key]);
-
-function dbApp(state = defaultState, action) {
-  switch (action.type) {
-    case 'SET_SELECTION':
-      return set(selectionLens, action.id, state);
-
-    case 'CREATE_ITEM': {
-      // create a new item and set it as the selection
+const setCollection = (state, action) => {
+  const currentCollection = view(lens.collection, state);
+  const currentItem = view(lens.item, state);
+  if (currentCollection !== action.name) {
+    if (currentItem) {
       return compose(
-        set(selectionLens, action.id),
-        set(itemLens(action.id), emptyItem),
+        set(lens.item, ''),
+        set(lens.collection, action.name),
       )(state);
     }
+    return set(lens.collection, action.name, state);
+  }
+  return state;
+};
 
-    case 'UPDATE_ITEM': {
-      if (action.id !== '') {
-        return set(itemLens(action.id), action.datum, state);
-      }
-
-      return state;
+const setItem = (state, action) => {
+  const currentCollection = view(lens.collection, state);
+  const currentItem = view(lens.item, state);
+  if (currentCollection) {
+    if (currentItem !== action.id) {
+      return set(lens.item, action.id, state);
     }
+    return state;
+  }
+  return state;
+};
 
-    case 'DELETE_ITEM': {
-      // delete the selected item and set the selection to nothing
-      const selection = view(selectionLens, state);
-      if (selection !== '') {
-        const newData = dissoc(selection, view(dataLens, state));
+const createItem = (state, action) => {
+  const currentCollection = view(lens.collection, state);
+  if (currentCollection) {
+    switch (currentCollection) {
+      case 'techniques': {
+        const datum = new Technique();
         return compose(
-          set(selectionLens, ''),
-          set(dataLens, newData),
+          set(lens.item, action.id),
+          set(lens.datum(currentCollection, action.id), datum),
         )(state);
       }
-
-      return state;
+      default:
+        return state;
     }
+  }
+  return state;
+};
 
-    default:
-      return state;
+const updateSelectedItem = (state, action) => {
+  const currentCollection = view(lens.collection, state);
+  const currentItem = view(lens.item, state);
+  if (currentCollection) {
+    if (currentItem) {
+      return set(lens.datum(currentCollection, currentItem), action.datum, state);
+    }
+    return state;
+  }
+  return state;
+};
+
+const deleteSelectedItem = (state) => {
+  const currentCollection = view(lens.collection, state);
+  const currentItem = view(lens.item, state);
+  if (currentCollection) {
+    if (currentItem) {
+      return compose(
+        set(lens.item, ''),
+        deleteDatum(currentCollection, currentItem),
+      )(state);
+    }
+    return state;
+  }
+  return state;
+};
+
+function dbApp(state = new State(), action) {
+  switch (action.type) {
+    case 'SET_COLLECTION': return setCollection(state, action);
+    case 'SET_ITEM': return setItem(state, action);
+    case 'CREATE_ITEM': return createItem(state, action);
+    case 'UPDATE_SELECTED_ITEM': return updateSelectedItem(state, action);
+    case 'DELETE_SELECTED_ITEM': return deleteSelectedItem(state, action);
+    default: return state;
   }
 }
 
