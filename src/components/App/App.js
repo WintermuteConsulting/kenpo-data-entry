@@ -2,7 +2,7 @@ import React from 'react';
 import ListContainer from '../ListContainer/ListContainer';
 import FormContainer from '../FormContainer/FormContainer';
 import ButtonContainer from '../ButtonContainer/ButtonContainer';
-import { createItem, deleteItem } from '../../actions/actions';
+import { createItem, deleteSelectedItem } from '../../actions/actions';
 
 function App() {
   return (
@@ -10,7 +10,7 @@ function App() {
       <div>
         <div><ListContainer /></div>
         <ButtonContainer action={createItem}>＋</ButtonContainer>
-        <ButtonContainer action={deleteItem}>－</ButtonContainer>
+        <ButtonContainer action={deleteSelectedItem}>－</ButtonContainer>
       </div>
       <FormContainer />
     </div>

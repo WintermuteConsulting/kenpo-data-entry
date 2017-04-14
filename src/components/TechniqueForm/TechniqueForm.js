@@ -27,7 +27,7 @@ class TechniqueForm extends React.Component {
 
   render() {
     const onClick = handler => (
-      (e) => { e.preventDefault(); handler(this.props.id, this.state); }
+      (e) => { e.preventDefault(); handler(this.state); }
     );
     return (
       <form>
@@ -46,7 +46,6 @@ class TechniqueForm extends React.Component {
 }
 
 TechniqueForm.propTypes = {
-  id: React.PropTypes.string.isRequired,
   initialData: React.PropTypes.shape({
     title: React.PropTypes.string,
     attack: React.PropTypes.string,

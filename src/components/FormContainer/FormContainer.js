@@ -1,17 +1,20 @@
 import { connect } from 'react-redux';
-import { updateItem } from '../../actions/actions';
+import { view } from 'ramda';
+import { updateSelectedItem } from '../../actions/actions';
+import { lens } from '../../data/state';
 import TechniqueForm from '../TechniqueForm/TechniqueForm';
 
-const mapStateToProps = ({ selection, data }) => (
-  {
-    id: selection,
-    initialData: data[selection],
-  }
-);
+const mapStateToProps = (state) => {
+  const collection = view(lens.collection, state);
+  const item = view(lens.item, state);
+  return {
+    initialData: view(lens.datum(collection, item), state),
+  };
+};
 
 const mapDispatchToProps = dispatch => (
   {
-    onSubmit: (id, datum) => dispatch(updateItem(id, datum)),
+    onSubmit: datum => dispatch(updateSelectedItem(datum)),
   }
 );
 
