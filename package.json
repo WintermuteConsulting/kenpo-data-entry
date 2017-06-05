@@ -41,6 +41,7 @@
     "classnames": "^2.2.5",
     "co": "^4.6.0",
     "express": "^4.14.0",
+    "isomorphic-fetch": "^2.2.1",
     "isomorphic-style-loader": "^1.1.0",
     "mongodb": "^2.2.20",
     "openurl": "^1.1.1",
@@ -50,6 +51,7 @@
     "react-dom": "^15.4.2",
     "react-redux": "^5.0.3",
     "redux": "^3.6.0",
+    "redux-thunk": "^2.2.0",
     "string-hash": "^1.1.3"
   },
   "devDependencies": {
@@ -109,7 +111,7 @@
     "react-addons-test-utils": "^15.4.2",
     "react-hot-loader": "^3.0.0-beta.6",
     "rimraf": "^2.5.4",
-    "sinon": "^1.17.7",
+    "sinon": "^2.0.0",
     "source-map-support": "^0.4.11",
     "style-loader": "^0.13.1",
     "stylefmt": "^5.1.2",
