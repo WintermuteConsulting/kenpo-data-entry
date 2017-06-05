@@ -20,6 +20,7 @@
     "build": "babel-node tools/run build",
     "stats": "babel-node tools/run stats",
     "start": "babel-node tools/run start",
+    "debug": "babel-node --inspect build/server",
     "serve": "babel-node tools/run runServer"
   },
   "repository": {
