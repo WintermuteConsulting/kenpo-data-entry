@@ -1,24 +1,21 @@
 import { connect } from 'react-redux';
-import { view } from 'ramda';
-import { setItem } from '../../actions/actions';
+import { getCollection } from '../../selectors/getters';
+import changePath from '../../actions/path';
 import Option from '../Option/Option';
-import { lens, getData } from '../../data/state';
 
-const mapStateToProps = (state) => {
-  const collection = view(lens.collection, state);
-  const item = view(lens.item, state);
-  const data = getData(collection, state);
+const mapStateToProps = (state, { path }) => {
+  const data = getCollection(state, path);
   return {
     options: Object.keys(data).map(key => ({ id: key, text: data[key].title })),
-    value: item,
+    value: path.item || '',
   };
 };
 
-const mapDispatchToProps = dispatch => (
+const mapDispatchToProps = (dispatch, { path }) => (
   {
     onChange: (e) => {
       const id = e.target.value;
-      dispatch(setItem(id));
+      dispatch(changePath({ collection: path.collection, item: id }));
     },
   }
 );

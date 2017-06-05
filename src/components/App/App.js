@@ -2,19 +2,25 @@ import React from 'react';
 import ListContainer from '../ListContainer/ListContainer';
 import FormContainer from '../FormContainer/FormContainer';
 import ButtonContainer from '../ButtonContainer/ButtonContainer';
-import { createItem, deleteSelectedItem } from '../../actions/actions';
 
-function App() {
+function App(props) {
+  const { path, handleCreate, handleDelete } = props;
   return (
     <div style={{ display: 'flex' }}>
       <div>
-        <div><ListContainer /></div>
-        <ButtonContainer action={createItem}>＋</ButtonContainer>
-        <ButtonContainer action={deleteSelectedItem}>－</ButtonContainer>
+        <div><ListContainer path={path} /></div>
+        <ButtonContainer action={handleCreate}>＋</ButtonContainer>
+        <ButtonContainer action={handleDelete}>－</ButtonContainer>
       </div>
-      <FormContainer />
+      <FormContainer path={path} />
     </div>
   );
 }
+
+App.propTypes = {
+  path: React.PropTypes.objectOf(React.PropTypes.string).isRequired,
+  handleCreate: React.PropTypes.func.isRequired,
+  handleDelete: React.PropTypes.func.isRequired,
+};
 
 export default App;

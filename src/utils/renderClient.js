@@ -1,10 +1,11 @@
 import React from 'react';
 import { renderToString } from 'react-dom/server';
-import { createStore } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
+import thunk from 'redux-thunk';
 import { Provider } from 'react-redux';
 import pug from 'pug';
-import dbApp from '../reducers/dbApp';
-import App from '../components/App/App';
+import root from '../reducers/root';
+import AppContainer from '../components/AppContainer/AppContainer';
 import { apply } from './effects';
 import { transmog, promiseify } from './helpful';
 import Response from './Response';
@@ -20,11 +21,11 @@ export default function* renderClient(dbc) {
       const cursor = collection.find();
       const docs = yield apply(cursor, cursor.toArray);
       const data = Object.assign({}, ...docs.map(transmog));
-      const state = new State({ techniques: data }, 'techniques');
-      const store = createStore(dbApp, state);
+      const state = new State({ collection: 'techniques', item: null }, { techniques: data });
+      const store = createStore(root, state, applyMiddleware(thunk));
       const html = renderToString(
         <Provider store={store}>
-          <App />
+          <AppContainer />
         </Provider>,
       );
       const preloadedState = store.getState();
