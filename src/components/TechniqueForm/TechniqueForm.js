@@ -11,51 +11,31 @@ export const ids = {
   attack: hash('technique-attack').toString(),
 };
 
-class TechniqueForm extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = props.initialData;
-  }
-
-  componentWillReceiveProps(props) {
-    this.setState(props.initialData);
-  }
-
-  makeHandler(key) {
-    return event => this.setState({ [key]: event.target.value });
-  }
-
-  render() {
-    const onClick = handler => (
-      (e) => { e.preventDefault(); handler(this.state); }
-    );
-    return (
-      <form>
-        <button type="submit" onClick={onClick(this.props.onSubmit)}>Save</button>
-        <fieldset key={ids.title}>
-          <label htmlFor={ids.title}>title</label>
-          <TextInput id={ids.title} value={this.state.title} onChange={this.makeHandler('title')} />
-        </fieldset>
-        <fieldset key={ids.attack}>
-          <label htmlFor={ids.attack}>attack</label>
-          <TextInput id={ids.attack} value={this.state.attack} onChange={this.makeHandler('attack')} />
-        </fieldset>
-      </form>
-    );
-  }
+export default function TechniqueForm(props) {
+  const { value, handleChange, id } = props;
+  return (
+    <form id={id}>
+      <fieldset key={ids.title}>
+        <label htmlFor={ids.title}>title</label>
+        <TextInput id={ids.title} value={value.title} onChange={handleChange('title')} />
+      </fieldset>
+      <fieldset key={ids.attack}>
+        <label htmlFor={ids.attack}>attack</label>
+        <TextInput id={ids.attack} value={value.attack} onChange={handleChange('attack')} />
+      </fieldset>
+    </form>
+  );
 }
 
 TechniqueForm.propTypes = {
-  initialData: React.PropTypes.shape({
+  value: React.PropTypes.shape({
     title: React.PropTypes.string,
     attack: React.PropTypes.string,
-  }),
-  onSubmit: React.PropTypes.func,
+  }).isRequired,
+  handleChange: React.PropTypes.func.isRequired,
+  id: React.PropTypes.string,
 };
 
 TechniqueForm.defaultProps = {
-  initialData: { title: '', attack: '' },
-  onSubmit: undefined,
+  id: null,
 };
-
-export default TechniqueForm;
