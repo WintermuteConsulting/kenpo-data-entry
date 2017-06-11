@@ -1,7 +1,7 @@
 import React from 'react';
 
 function TextInput({ id, value, onChange }) {
-  return <input id={id} type="text" value={value} onChange={onChange} />;
+  return <input id={id} type="text" value={value} onChange={e => onChange(e.target.value)} />;
 }
 
 TextInput.propTypes = {
