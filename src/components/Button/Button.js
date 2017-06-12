@@ -1,17 +1,22 @@
 import React from 'react';
 
 function Button(props) {
-  return <button type="button" onClick={props.onClick}>{props.children}</button>;
+  const { type, form, onClick, children } = props;
+  return <button type={type} form={form} onClick={onClick}>{children}</button>;
 }
 
 Button.propTypes = {
+  type: React.PropTypes.string,
+  form: React.PropTypes.string,
   onClick: React.PropTypes.func,
   children: React.PropTypes.node,
 };
 
 Button.defaultProps = {
-  onClick: () => {},
-  children: undefined,
+  type: 'button',
+  form: null,
+  onClick: null,
+  children: null,
 };
 
 export default Button;
